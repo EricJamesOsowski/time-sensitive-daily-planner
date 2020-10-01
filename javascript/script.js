@@ -4,11 +4,12 @@ var todaysDateDayAndMonth = now.format('MMM Do');
 var currentHour = now.format('HH');
 var timeBlocks = $(".time-block");
 var saveButtons = $(".saveBtn");
-var textAreaMessageArray = []
 var textAreaMessageArray = JSON.parse(localStorage.getItem('localStoredMessages')) || [];
 $("#currentDay").html(today + " " + todaysDateDayAndMonth);
 
-fillTextAreaFromLocal()
+console.log(textAreaMessageArray);
+
+fillTextAreaFromLocal();
 
 updateTimeBlocks();
 
@@ -18,13 +19,15 @@ for (let i = 0; i < saveButtons.length; i++) {
 }
 
 function saveToLocal() {
+    textAreaMessageArray = [];
     for (let i = 0; i < timeBlocks.length; i++) {
         var curIterationTextInputValue = $(timeBlocks[i]).val();
-        textAreaMessageArray.push(curIterationTextInputValue);   
+        textAreaMessageArray.push(curIterationTextInputValue);
+        console.log("text message array is "+textAreaMessageArray); 
     }
-    //      userInitialsArray.push(JSON.parse(localStorage.getItem('localScoreboard')));
-    //      localStorage.setItem('localScoreboard', JSON.stringify(userInitialsArray));
+    clearLocalStorage();
     localStorage.setItem('localStoredMessages', JSON.stringify(textAreaMessageArray));
+    toast("I have been saved!");
 }
 
 function updateTimeBlocks() {
@@ -44,9 +47,27 @@ function updateTimeBlocks() {
     }
 }
 
+function clearMessagesFromScreen() {
+    for (let i = 0; i < timeBlocks.length; i++) {
+        var curIterationTimeBlockHtml = $(timeBlocks[i]).html("");
+    }
+}
+
+function clearLocalStorage(){
+    localStorage.clear();
+}
+
 function fillTextAreaFromLocal() {
     for (let i = 0; i < timeBlocks.length; i++) {
         var curIterationTextInputValue = $(timeBlocks[i]).val(textAreaMessageArray[i]);
         textAreaMessageArray.push(curIterationTextInputValue);   
     }
+}
+
+
+function toast (snackText) {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    x.innerHTML = snackText;
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1500);
 }

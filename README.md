@@ -14,6 +14,8 @@ Just open the page in your preferred browser
 Open with your browser and edit any time slot you'd like and save!
 You can edit your time blocks and save all of them by clicking any button on the right.
 
+Available here :https://ericjamesosowski.github.io/time-sensitive-daily-planner/.
+
 
 ## License
 Currently under The Unlicense.

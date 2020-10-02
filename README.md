@@ -2,7 +2,7 @@
 
 This is a project to explore moment.js and practice with data manipulation with date/time objects.
 
-![Screenshot of planner](../screenshot/screenshot.pngs)
+![Screenshot of planner](/screenshot/screenshot.png)
 
 ## Installation
 
